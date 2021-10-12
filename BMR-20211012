@@ -1,0 +1,27 @@
+import json
+import pandas as pd
+df = pd.read_csv("bmr.csv")
+df = pd.DataFrame.from_dict(df, orient='columns')
+def BMIcalculator(WeightKg,HeightCm):
+    HeightM=HeightCm/100
+    bmi = WeightKg/(HeightM*HeightM)
+    if bmi < 18.5:
+        print('Your BMI is', round(bmi,2), '\tBMI Category: underweight. \t\t Health risk: Malnutrition Risk ')
+
+    elif 18.5 <= bmi < 24.9:
+        print('Your BMI is',round(bmi,2),'\tBMI Category: normal weight. \t\t Health risk: Low Risk')
+
+    elif 24.9 <= bmi < 30:
+        print('your BMI is', round(bmi,2),'\tBMI Category: overweight.  \t\t Health risk: Enhanced Risk')
+
+    elif  30.00 <= bmi < 34.9:
+        print('Your BMI is', round(bmi,2),'\tBMI Category: Moderately obese. \t Health risk: Medium Risk')
+    elif 35 <= bmi <39.9:
+        print('Your BMI is', round(bmi,2),'\tBMI Category: Severely obese. \t\t Health risk: High Risk')
+    elif bmi >=40 :
+        print('Your BMI is', round(bmi,2),'\tBMI Category: Very Severely obese. \t Health risk: Very High Risk')
+   
+   
+for i in range(len(df)):
+    BMIcalculator(df.loc[i,"WeightKg"],df.loc[i,"HeightCm"])
+#BMIcalculator(df.loc[i,"HeightCm"],df.loc[i,"WeightKg"])
